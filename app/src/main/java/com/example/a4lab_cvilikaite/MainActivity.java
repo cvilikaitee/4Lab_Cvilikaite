@@ -21,8 +21,9 @@ import java.util.HashSet;
 public class MainActivity extends AppCompatActivity {
 
     static ArrayList<String> notes = new ArrayList<>();
+    static ArrayList<String> tittles = new ArrayList<>();
     static ArrayAdapter arrayAdapter;
-
+    static ArrayAdapter arrayAdapter2;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -55,16 +56,18 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.listView);
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
         HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
-
+        HashSet<String> set2 = (HashSet<String>) sharedPreferences.getStringSet("tittles", null);
         if (set == null) {
-
+            tittles.add("Example");
             notes.add("Example note");
         } else {
             notes = new ArrayList(set);
+            tittles = new ArrayList(set);
         }
 
         // Using custom listView Provided by Android Studio
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);
+        arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, tittles);
 
         listView.setAdapter(arrayAdapter);
 
@@ -94,10 +97,13 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 notes.remove(itemToDelete);
+                                tittles.remove(itemToDelete);
                                 arrayAdapter.notifyDataSetChanged();
                                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
                                 HashSet<String> set = new HashSet(MainActivity.notes);
+                                HashSet<String> set2 = new HashSet(MainActivity.tittles);
                                 sharedPreferences.edit().putStringSet("notes", set).apply();
+                                sharedPreferences.edit().putStringSet("tittles", set2).apply();
                             }
                         }).setNegativeButton("No", null).show();
                 return true;
