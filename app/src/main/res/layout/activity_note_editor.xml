@@ -9,7 +9,7 @@
 
     <!--Adding Edit Text To add data to List View-->
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/edNotes"
         android:layout_width="411dp"
         android:layout_height="504dp"
         android:ems="10"
@@ -19,10 +19,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Tittle" />
+        app:layout_constraintTop_toBottomOf="@+id/edTittle" />
 
     <EditText
-        android:id="@+id/Tittle"
+        android:id="@+id/edTittle"
         android:layout_width="413dp"
         android:layout_height="74dp"
         android:layout_marginTop="28dp"
@@ -31,5 +31,14 @@
         android:text="Tittle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:onClick="onBtnAddClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

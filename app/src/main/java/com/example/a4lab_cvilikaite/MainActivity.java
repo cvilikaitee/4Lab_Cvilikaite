@@ -15,6 +15,10 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -23,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     static ArrayList<String> notes = new ArrayList<>();
     static ArrayList<String> tittles = new ArrayList<>();
     static ArrayAdapter arrayAdapter;
-    static ArrayAdapter arrayAdapter2;
+
+    ListView listView;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -49,37 +54,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesv2", Context.MODE_PRIVATE);
+
+        HashSet<String> setNotes = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
+        HashSet<String> setTittles = (HashSet<String>) sharedPreferences.getStringSet("tittles", null);
+        if (setTittles == null) {
+            SharedPreferences.Editor spEditor = sharedPreferences.edit();
+            notes.add("Example note");
+            spEditor.putStringSet("notes", new HashSet(notes));
+
+            tittles.add("Example");
+            spEditor.putStringSet("tittles", new HashSet(tittles));
+
+            spEditor.apply();
+        } else {
+            notes = new ArrayList(setNotes);
+            tittles = new ArrayList(setTittles);
+        }
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, tittles);
+        listView.setAdapter(arrayAdapter);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ListView listView = findViewById(R.id.listView);
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
-        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
-        HashSet<String> set2 = (HashSet<String>) sharedPreferences.getStringSet("tittles", null);
-        if (set == null) {
-            tittles.add("Example");
-            notes.add("Example note");
-        } else {
-            notes = new ArrayList(set);
-            tittles = new ArrayList(set);
-        }
-
-        // Using custom listView Provided by Android Studio
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, notes);
-        arrayAdapter2 = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, tittles);
-
-        listView.setAdapter(arrayAdapter);
+        listView = findViewById(R.id.listView);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                // Going from MainActivity to NotesEditorActivity
-                Intent intent = new Intent(getApplicationContext(), NoteEditorActivity.class);
-                intent.putExtra("noteId", i);
-                startActivity(intent);
-
+                int length = notes.size();
+                Snackbar.make(listView,notes.get(length - i - 1), BaseTransientBottomBar.LENGTH_LONG ).show();
             }
         });
 
