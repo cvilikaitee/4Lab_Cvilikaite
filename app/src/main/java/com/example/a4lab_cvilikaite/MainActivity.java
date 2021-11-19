@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         HashSet<String> setNotes = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
         HashSet<String> setTittles = (HashSet<String>) sharedPreferences.getStringSet("tittles", null);
         if (setTittles == null) {
-            Toast.makeText(getApplicationContext(), "You can add notes by clicking on the 3 dots...",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "You can add notes by clicking on the + ...",Toast.LENGTH_LONG).show();
         } else {
             notes = new ArrayList(setNotes);
             tittles = new ArrayList(setTittles);
