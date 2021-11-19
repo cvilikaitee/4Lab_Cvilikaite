@@ -46,6 +46,7 @@ public class NoteEditorActivity extends AppCompatActivity {
                 if(setTittles != null) {
                     HashSet<String> setTittlesNew = new HashSet(setTittles);
                     setTittlesNew.add(charSequence.toString());
+                    spEditor.putStringSet("tittles", setTittles);
                     spEditor.putStringSet("notes", setNotes);
                 }
                 spEditor.apply();

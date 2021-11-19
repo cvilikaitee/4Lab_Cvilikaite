@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,14 +63,7 @@ public class MainActivity extends AppCompatActivity {
         HashSet<String> setNotes = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
         HashSet<String> setTittles = (HashSet<String>) sharedPreferences.getStringSet("tittles", null);
         if (setTittles == null) {
-            SharedPreferences.Editor spEditor = sharedPreferences.edit();
-            notes.add("Example note");
-            spEditor.putStringSet("notes", new HashSet(notes));
-
-            tittles.add("Example");
-            spEditor.putStringSet("tittles", new HashSet(tittles));
-
-            spEditor.apply();
+            Toast.makeText(getApplicationContext(), "You can add notes by clicking on the 3 dots...",Toast.LENGTH_LONG).show();
         } else {
             notes = new ArrayList(setNotes);
             tittles = new ArrayList(setTittles);
