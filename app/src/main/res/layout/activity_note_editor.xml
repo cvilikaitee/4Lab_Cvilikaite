@@ -8,24 +8,26 @@
     tools:context=".NoteEditorActivity">
 
     <!--Adding Edit Text To add data to List View-->
+
     <EditText
         android:id="@+id/edNotes"
-        android:layout_width="411dp"
-        android:layout_height="504dp"
+        android:layout_width="413dp"
+        android:layout_height="579dp"
         android:ems="10"
         android:gravity="top|left"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edTittle" />
+        app:layout_constraintTop_toBottomOf="@+id/edTittle"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/edTittle"
         android:layout_width="413dp"
         android:layout_height="74dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="60dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Tittle"
@@ -36,9 +38,14 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:colorAccent="#C67BD3"
         android:onClick="onBtnAddClick"
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.002" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
