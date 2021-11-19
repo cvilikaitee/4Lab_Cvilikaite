@@ -34,7 +34,7 @@ public class NoteEditorActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesv2", Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
                 SharedPreferences.Editor spEditor = sharedPreferences.edit();
                 HashSet<String> setNotes = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
                 HashSet<String> setTittles = (HashSet<String>) sharedPreferences.getStringSet("tittles", null);
@@ -87,7 +87,7 @@ public class NoteEditorActivity extends AppCompatActivity {
 
     public void onBtnAddClick(View view) {
         if(!edNotes.getText().toString().isEmpty()) {
-            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesv2", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
             SharedPreferences.Editor spEditor = sharedPreferences.edit();
             HashSet<String> setNotes = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
             HashSet<String> setTittles = (HashSet<String>) sharedPreferences.getStringSet("tittles", null);

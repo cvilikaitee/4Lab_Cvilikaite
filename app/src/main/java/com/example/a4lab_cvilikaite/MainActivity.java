@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notesv2", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.notes", Context.MODE_PRIVATE);
 
         HashSet<String> setNotes = (HashSet<String>) sharedPreferences.getStringSet("notes", null);
         HashSet<String> setTittles = (HashSet<String>) sharedPreferences.getStringSet("tittles", null);
